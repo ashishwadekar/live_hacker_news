@@ -2,12 +2,34 @@
     <div class="row">
         <div class="column column-10">LiveHacker</div>
         <div class="column column-30"><span phx-click="new">new |</span><span phx-click="past"> past |</span><span
-                phx-click="comment"> comment |</span><span phx-click="submit"> submit |</span></div>
+                phx-click="comment"> comment |</span><span phx-click="submit" phx-value="<%= @username %>"> submit
+                |</span></div>
         <div class="column column-30"></div>
         <div class="column"><%= @username %></div>
     </div>
 </div>
 
-<div class="container" id="post_area">
-<h4>Sample Post area</h4>
+<div class="container" class="post_form" style="display:<%= @form_state %>">
+    <br>
+    <h4>Share a new post</h4>
+    <form action="#" phx-submit="add_post">
+        <%= text_input :link, :title, placeholder: "Title of your share" %>
+        <%= text_input :link, :url, placeholder: "Paste the URL here" %>
+        <%= text_input :link, :website, placeholder: "Website source of the URL" %>
+        <%= hidden_input :link, :user, value: @username %>
+        <%= hidden_input :link, :upvotes, value: 0 %>
+        <%= submit "Add", phx_disable_with: "Adding..." %>
+        <button class="button-outline" phx-click="hide_form">Cancel</button>
+    </form>
 </div>
+
+<%= for {post, index} <- Enum.with_index(@posts) do %>
+<div class="container" id="post_area">
+    <div class="row">
+        <div class="column column-100"><%= index + 1 %>. <span phx-click="upvote"> 🔼 </span><span class="post_title"><%= post.title %></span> <span class="post_website">(<%= post.website %>)</span></div>
+    </div>
+    <div class="row post_metrics">
+        <div class="column column-100"><%= post.upvotes %> points by <%= post.user %> <%= if round(Time.diff(Time.utc_now, Time.utc_now) / 3600) < 1, do: "this hour", else: round(Time.diff(Time.utc_now, Time.utc_now) / 3600) <> " hours ago" %> | hide | 115 comments</div>
+    </div>
+</div>
+<% end %>

@@ -53,6 +53,7 @@ config :live_hacker_news, LiveHackerNewsWeb.Endpoint,
       ~r"priv/gettext/.*(po)$",
       ~r"lib/live_hacker_news_web/{live,views}/.*(ex)$",
       ~r"lib/live_hacker_news_web/templates/.*(eex)$",
+      ~r{lib/live_hacker_news_web/live/.*(ex)$}
     ]
   ]
 

@@ -11,3 +11,17 @@
 .container#post_area {
     background-color: #f1f4ed
 }
+
+.post_title {
+    color: black
+}
+
+.post_website {
+    color: darkgray;
+    font-size: 12px
+}
+
+.post_metrics {
+    font-size: 12px;
+    padding-bottom: 7px;
+}
