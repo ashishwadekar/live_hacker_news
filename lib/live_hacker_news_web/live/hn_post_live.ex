@@ -47,7 +47,22 @@ defmodule LiveHackerNewsWeb.HnPostLive do
     {:noreply, assign(socket, form_state: "none", posts: posts)}
   end
 
+  # Sort by newest posts
+  def handle_event("new", _, socket) do
+    posts = fetch_posts()
+
+    {:noreply, assign(socket, form_state: "none", posts: posts)}
+  end
+
+  # Sort by earlier posts
+  def handle_event("past", _, socket) do
+    posts = Post.get_links_for_past()
+
+    {:noreply, assign(socket, form_state: "none", posts: posts)}
+  end
+
+
   defp fetch_posts do
-     Post.list_links()
+     Post.get_links_for_today()
   end
 end
