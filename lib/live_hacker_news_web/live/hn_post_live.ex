@@ -38,6 +38,15 @@ defmodule LiveHackerNewsWeb.HnPostLive do
     {:noreply, assign(socket, form_state: "none", posts: posts)}
   end
 
+  # Upvote Post
+  def handle_event("upvote", id, socket) do
+    post = Post.get_link!(id)
+    Post.update_link(post, %{upvotes: post.upvotes + 1})
+    posts = fetch_posts()
+
+    {:noreply, assign(socket, form_state: "none", posts: posts)}
+  end
+
   defp fetch_posts do
      Post.list_links()
   end
