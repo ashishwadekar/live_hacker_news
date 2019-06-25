@@ -3,7 +3,11 @@
 /* @import "./phoenix.css"; */
 
 /* Specific Style */
-.row#top_bar {
+.container#top_bar {
     background-color: #FAB57F;
     font-style: bold;
+}
+
+.container#post_area {
+    background-color: #f1f4ed
 }
