@@ -26,10 +26,10 @@
 <%= for {post, index} <- Enum.with_index(@posts) do %>
 <div class="container" id="post_area">
     <div class="row">
-        <div class="column column-100"><%= index + 1 %>. <span phx-click="upvote" phx-value="<%= post.id %>"> 🔼 </span><span class="post_title"><%= post.title %></span> <span class="post_website">(<%= post.website %>)</span></div>
+        <div class="column column-100"><%= index + 1 %>. <span phx-click="upvote" phx-value="<%= post.id %>"> 🔼 </span> <%= link post.title, to: post.url, target: "_blank", class: "post_title" %> <span class="post_website" phx-click="website_sort" phx-value="<%= post.website %>">(<%= post.website %>)</span></div>
     </div>
     <div class="row post_metrics">
-        <div class="column column-100"><%= post.upvotes %> points by <%= post.user %> <%= if round(Time.diff(Time.utc_now, Time.utc_now) / 3600) < 1, do: "this hour", else: round(Time.diff(Time.utc_now, Time.utc_now) / 3600) <> " hours ago" %> | hide | 115 comments</div>
+        <div class="column column-100"><%= post.upvotes %> points by <%= post.user %> <%= if round(Time.diff(Time.utc_now, post.inserted_at) / 3600) <= 1, do: "this hour", else: "#{round(Time.diff(Time.utc_now, post.inserted_at) / 3600)} hours ago" %> | hide | 115 comments</div>
     </div>
 </div>
 <% end %>

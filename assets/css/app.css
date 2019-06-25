@@ -13,7 +13,9 @@
 }
 
 .post_title {
-    color: black
+    color: black;
+    text-decoration: none;
+
 }
 
 .post_website {
