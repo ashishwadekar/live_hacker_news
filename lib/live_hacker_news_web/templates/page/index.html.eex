@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row" id="top_bar">
+    <div class="column column-10">LiveHacker</div>
+    <div class="column column-10">new |</div>
+    <div class="column column-10">past |</div>
+    <div class="column column-10">comments |</div>
+    <div class="column column-30"></div>
+    <div class="column">Username</div>
+  </div>
+</div>
