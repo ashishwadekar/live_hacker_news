@@ -1,4 +1,7 @@
 defmodule LiveHackerNews.Post.Link do
+  @moduledoc """
+  Links table schema & model
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

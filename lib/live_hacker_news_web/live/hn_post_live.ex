@@ -1,4 +1,7 @@
 defmodule LiveHackerNewsWeb.HnPostLive do
+  @moduledoc """
+  The LiveView Implementation for all the interactive realtime features
+  """
   use Phoenix.LiveView
   alias LiveHackerNews.Post
 
@@ -7,7 +10,7 @@ defmodule LiveHackerNewsWeb.HnPostLive do
     Phoenix.PubSub.subscribe(LiveHackerNews.PubSub, "hacker_news")
 
     # Assign a random funny name
-    usernames = ["Flowers_Hnads","Websites_Ice_cream","Breakfast_YouTube","YouTube_Ice_cream_cone","Ice_cream_cone_Fence","Video_games_System","Cone_Toolbox","Video_games_Printer","Ring_Drugs","Ice_cream_Solar", "Dislike_Poop","Light_saber_Clock","Book_Shoe","Towel_BBQ","Ice_cream_cone_Prints","Sink_Bird","Plus_Laptop","Breakfast_Video_games","Comics_Trees","Android_Breakfast", "Monster_Poop","Websites_Water","Allergies_Crab","Fusion_Crab","Toolbox_Trees","Ice_cream_cone_Horse","Nuclear_Laptop","Fusion_Trees","Fusion_Printer","Water_Toilet", "Soda_Monster","Settings_Breakfast","Sink_Comics","Monster_Trees","Hnads_Whale","Comics_Websites","Prints_Fence","Elevator_Clock","Mail_Monster","Ice_cream_cone_Fusion", "Ring_Robot","Dog_Breakfast","Male_Websites","Dog_Shoe","Ring_Male","Websites_Printer","Leash_Bird","Light_saber_Cat","Breakfast_Boat","Clock_Printer"]
+    usernames = ["Flowers_Hnads", "Websites_Ice_cream", "Breakfast_YouTube", "YouTube_Ice_cream_cone", "Ice_cream_cone_Fence", "Video_games_System", "Cone_Toolbox", "Video_games_Printer", "Ring_Drugs", "Ice_cream_Solar", "Dislike_Poop", "Light_saber_Clock", "Book_Shoe", "Towel_BBQ", "Ice_cream_cone_Prints", "Sink_Bird", "Plus_Laptop", "Breakfast_Video_games", "Comics_Trees", "Android_Breakfast", "Monster_Poop", "Websites_Water", "Allergies_Crab", "Fusion_Crab", "Toolbox_Trees", "Ice_cream_cone_Horse", "Nuclear_Laptop", "Fusion_Trees", "Fusion_Printer", "Water_Toilet", "Soda_Monster", "Settings_Breakfast", "Sink_Comics", "Monster_Trees", "Hnads_Whale", "Comics_Websites", "Prints_Fence", "Elevator_Clock", "Mail_Monster", "Ice_cream_cone_Fusion", "Ring_Robot", "Dog_Breakfast", "Male_Websites", "Dog_Shoe", "Ring_Male", "Websites_Printer", "Leash_Bird", "Light_saber_Cat", "Breakfast_Boat", "Clock_Printer"]
     username = Enum.random(usernames)
     form_state = "none"
     posts = fetch_posts()
@@ -67,7 +70,7 @@ defmodule LiveHackerNewsWeb.HnPostLive do
   end
 
   # Handle Channel Sockets
-  def handle_info({LiveHackerNewsWeb.HnPostLive, action, payload}, socket) do
+  def handle_info({LiveHackerNewsWeb.HnPostLive, _action, payload}, socket) do
     {:noreply, assign(socket, payload)}
   end
 
