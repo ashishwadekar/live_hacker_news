@@ -6,8 +6,18 @@ defmodule LiveHackerNews.PostTest do
   describe "links" do
     alias LiveHackerNews.Post.Link
 
-    @valid_attrs %{title: "some title", url: "some url", user: "some user", website: "some website"}
-    @update_attrs %{title: "some updated title", url: "some updated url", user: "some updated user", website: "some updated website"}
+    @valid_attrs %{
+      title: "some title",
+      url: "some url",
+      user: "some user",
+      website: "some website"
+    }
+    @update_attrs %{
+      title: "some updated title",
+      url: "some updated url",
+      user: "some updated user",
+      website: "some updated website"
+    }
     @invalid_attrs %{title: nil, url: nil, user: nil, website: nil}
 
     def link_fixture(attrs \\ %{}) do

@@ -103,12 +103,18 @@ defmodule LiveHackerNews.Post do
   end
 
   def get_links_for_today do
-    Ecto.Query.from(l in Link, where: fragment("date(inserted_at) = ?", ^Date.utc_today), order_by: [desc: :upvotes])
+    Ecto.Query.from(l in Link,
+      where: fragment("date(inserted_at) = ?", ^Date.utc_today()),
+      order_by: [desc: :upvotes]
+    )
     |> Repo.all()
   end
 
   def get_links_for_past do
-    Ecto.Query.from(l in Link, where: fragment("date(inserted_at) != ?", ^Date.utc_today), order_by: [desc: :upvotes])
+    Ecto.Query.from(l in Link,
+      where: fragment("date(inserted_at) != ?", ^Date.utc_today()),
+      order_by: [desc: :upvotes]
+    )
     |> Repo.all()
   end
 end

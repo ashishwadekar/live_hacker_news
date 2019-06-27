@@ -10,7 +10,59 @@ defmodule LiveHackerNewsWeb.HnPostLive do
     Phoenix.PubSub.subscribe(LiveHackerNews.PubSub, "hacker_news")
 
     # Assign a random funny name
-    usernames = ["Flowers_Hnads", "Websites_Ice_cream", "Breakfast_YouTube", "YouTube_Ice_cream_cone", "Ice_cream_cone_Fence", "Video_games_System", "Cone_Toolbox", "Video_games_Printer", "Ring_Drugs", "Ice_cream_Solar", "Dislike_Poop", "Light_saber_Clock", "Book_Shoe", "Towel_BBQ", "Ice_cream_cone_Prints", "Sink_Bird", "Plus_Laptop", "Breakfast_Video_games", "Comics_Trees", "Android_Breakfast", "Monster_Poop", "Websites_Water", "Allergies_Crab", "Fusion_Crab", "Toolbox_Trees", "Ice_cream_cone_Horse", "Nuclear_Laptop", "Fusion_Trees", "Fusion_Printer", "Water_Toilet", "Soda_Monster", "Settings_Breakfast", "Sink_Comics", "Monster_Trees", "Hnads_Whale", "Comics_Websites", "Prints_Fence", "Elevator_Clock", "Mail_Monster", "Ice_cream_cone_Fusion", "Ring_Robot", "Dog_Breakfast", "Male_Websites", "Dog_Shoe", "Ring_Male", "Websites_Printer", "Leash_Bird", "Light_saber_Cat", "Breakfast_Boat", "Clock_Printer"]
+    usernames = [
+      "Flowers_Hnads",
+      "Websites_Ice_cream",
+      "Breakfast_YouTube",
+      "YouTube_Ice_cream_cone",
+      "Ice_cream_cone_Fence",
+      "Video_games_System",
+      "Cone_Toolbox",
+      "Video_games_Printer",
+      "Ring_Drugs",
+      "Ice_cream_Solar",
+      "Dislike_Poop",
+      "Light_saber_Clock",
+      "Book_Shoe",
+      "Towel_BBQ",
+      "Ice_cream_cone_Prints",
+      "Sink_Bird",
+      "Plus_Laptop",
+      "Breakfast_Video_games",
+      "Comics_Trees",
+      "Android_Breakfast",
+      "Monster_Poop",
+      "Websites_Water",
+      "Allergies_Crab",
+      "Fusion_Crab",
+      "Toolbox_Trees",
+      "Ice_cream_cone_Horse",
+      "Nuclear_Laptop",
+      "Fusion_Trees",
+      "Fusion_Printer",
+      "Water_Toilet",
+      "Soda_Monster",
+      "Settings_Breakfast",
+      "Sink_Comics",
+      "Monster_Trees",
+      "Hnads_Whale",
+      "Comics_Websites",
+      "Prints_Fence",
+      "Elevator_Clock",
+      "Mail_Monster",
+      "Ice_cream_cone_Fusion",
+      "Ring_Robot",
+      "Dog_Breakfast",
+      "Male_Websites",
+      "Dog_Shoe",
+      "Ring_Male",
+      "Websites_Printer",
+      "Leash_Bird",
+      "Light_saber_Cat",
+      "Breakfast_Boat",
+      "Clock_Printer"
+    ]
+
     username = Enum.random(usernames)
     form_state = "none"
     posts = fetch_posts()
@@ -41,7 +93,12 @@ defmodule LiveHackerNewsWeb.HnPostLive do
     Post.create_link(link)
     posts = fetch_posts()
 
-    Phoenix.PubSub.broadcast(LiveHackerNews.PubSub, "hacker_news", {__MODULE__, "add_post", %{posts: posts}})
+    Phoenix.PubSub.broadcast(
+      LiveHackerNews.PubSub,
+      "hacker_news",
+      {__MODULE__, "add_post", %{posts: posts}}
+    )
+
     {:noreply, assign(socket, form_state: "none", posts: posts)}
   end
 
@@ -51,7 +108,12 @@ defmodule LiveHackerNewsWeb.HnPostLive do
     Post.update_link(post, %{upvotes: post.upvotes + 1})
     posts = fetch_posts()
 
-    Phoenix.PubSub.broadcast(LiveHackerNews.PubSub, "hacker_news", {__MODULE__, "upvote", %{posts: posts}})
+    Phoenix.PubSub.broadcast(
+      LiveHackerNews.PubSub,
+      "hacker_news",
+      {__MODULE__, "upvote", %{posts: posts}}
+    )
+
     {:noreply, assign(socket, form_state: "none", posts: posts)}
   end
 
@@ -74,8 +136,7 @@ defmodule LiveHackerNewsWeb.HnPostLive do
     {:noreply, assign(socket, payload)}
   end
 
-
   defp fetch_posts do
-     Post.get_links_for_today()
+    Post.get_links_for_today()
   end
 end

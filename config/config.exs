@@ -27,9 +27,9 @@ config :phoenix, :json_library, Jason
 
 # LiveView Signing Salt
 config :live_hacker_news, LiveHackerNewsWeb.Endpoint,
-   live_view: [
-     signing_salt: "VhKbwUCvgHscMehkIrGl8wN4JTeYOsGK"
-   ]
+  live_view: [
+    signing_salt: "VhKbwUCvgHscMehkIrGl8wN4JTeYOsGK"
+  ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

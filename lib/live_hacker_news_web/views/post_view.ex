@@ -1,4 +1,3 @@
 defmodule LiveHackerNewsWeb.PostView do
-    use LiveHackerNewsWeb, :view
-
+  use LiveHackerNewsWeb, :view
 end
