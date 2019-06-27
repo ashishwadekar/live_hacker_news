@@ -2,7 +2,7 @@ defmodule LiveHackerNewsWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :live_hacker_news
 
   socket "/socket", LiveHackerNewsWeb.UserSocket,
-    websocket: true,
+    websocket: [timeout: 45_000],
     longpoll: false
 
   # Use LiveView Socket
