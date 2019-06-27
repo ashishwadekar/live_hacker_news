@@ -13,8 +13,8 @@ config :live_hacker_news, LiveHackerNewsWeb.Endpoint,
   http: [:inet6, port: System.get_env("PORT") || 4000],
   url: [scheme: "https", host: "young-thicket-66447", port: 443],
   check_origin: [
-  "https://young-thicket-66447.heroku.com",
-  "https://www.young-thicket-66447.heroku.com"
+  "https://young-thicket-66447.herokuapp.com",
+  "https://www.young-thicket-66447.herokuapp.com"
   ],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
